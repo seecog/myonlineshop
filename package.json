@@ -1,0 +1,25 @@
+{
+  "name": "myonlineshop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seecog/myonlineshop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seecog/myonlineshop/issues"
+  },
+  "homepage": "https://github.com/seecog/myonlineshop#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.3.8",
+    "morgan": "^1.9.1"
+  }
+}
