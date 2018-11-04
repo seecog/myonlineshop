@@ -2,6 +2,8 @@ var express = require('express');
 var route = express.Router();
 var Product = require('./models/product.model')
 var checkJWT = require('./middleware/check.jwt')
+var mongoose = require("mongoose");
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 
 route.delete('/products/:id',checkJWT,(req,res)=>{
@@ -26,7 +28,8 @@ route.get('/category/:id',checkJWT, (req, res) => {
     })
         .populate('owner')
         .populate('category')
-        .populate('reviews')
+        // .populate('reviews')
+        .deepPopulate('reviews')
         .exec((err, products) => {
             res.json({
                 success: true,
@@ -42,6 +45,7 @@ route.get('/products/users', checkJWT, (req, res) => {
         .populate('owner')
         .populate('category')
         .populate('reviews')
+        
         .exec((err, products) => {
             if (err) {
                 console.log(err)

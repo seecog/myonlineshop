@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
+
 var ProductSchema = new mongoose.Schema({
     category : {type : mongoose.Schema.Types.ObjectId,ref : 'Category'},
     owner : {type : mongoose.Schema.Types.ObjectId,ref : 'User'},
@@ -14,4 +16,6 @@ var ProductSchema = new mongoose.Schema({
     price : Number,
     created : {type : Date,default : Date.now}
 })
+
+ProductSchema.plugin(deepPopulate, {} /* more on options below */);
 module.exports = mongoose.model('Product',ProductSchema);
