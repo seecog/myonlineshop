@@ -3,6 +3,7 @@ var route = express.Router();
 var Category = require('./models/category.model')
 var checkJWT = require('./middleware/check.jwt')
 route.post('/categories',checkJWT, (req, res) => {
+    console.log('The category is ',req.body)
     var category = new Category();
     category.name = req.body.name;
     category.save();
