@@ -1,11 +1,11 @@
-import { Http } from "@angular/http";
 import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
 
 @Injectable()
 export class RestService {
 
-constructor(private http : Http){
+constructor(private http : HttpClient){
 
 }
 

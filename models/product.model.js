@@ -17,5 +17,5 @@ var ProductSchema = new mongoose.Schema({
     created : {type : Date,default : Date.now}
 })
 
-ProductSchema.plugin(deepPopulate, {} /* more on options below */);
+ProductSchema.plugin(deepPopulate);
 module.exports = mongoose.model('Product',ProductSchema);

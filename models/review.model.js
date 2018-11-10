@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var ReviewSchema = new mongoose.Schema({
-    owner :{type : mongoose.Schema.Types.ObjectId,ref : 'User'},
+    owner :{type : mongoose.Schema.Types.ObjectId,ref : 'user'},
     title : String,
     description : String,
     rating : {type : Number,default : 0},

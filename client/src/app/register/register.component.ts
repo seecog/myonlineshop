@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
       delete rawData.repassword;
       rawData.isSeller = this.isSellerStt;
       var data = await this.rest.post("http://localhost:3000/api/account/users", rawData)
-      data = data.json();
+      
      console.log('main status is ',data)
       if (data['success']) {
         this.data.success(data['message'])

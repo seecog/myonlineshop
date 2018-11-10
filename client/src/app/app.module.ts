@@ -10,21 +10,26 @@ import { RestService } from './services/rest.service';
 import { MessageService } from './services/message.service';
 import { MessageComponent } from './message/message.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {FormsModule} from '@angular/forms';
-
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { VendorProductsComponent } from './vendor-products/vendor-products.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { InterceptorService } from './services/interceptor.service';
+// import { ModalModule } from '@ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
     HomeComponent,
-    MessageComponent
+    MessageComponent,
+    VendorProductsComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     FormsModule,
     NgbModule,
-    HttpModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {
         path : '',component : LoginComponent
@@ -33,11 +38,18 @@ import {FormsModule} from '@angular/forms';
         path : 'register',component : RegisterComponent
       },
       {
-        path : 'home',component : HomeComponent
+        path : 'home',component : HomeComponent,
+        children : [
+          {path : 'vendorproducts',component : VendorProductsComponent}
+        ]
       }
     ])
   ],
-  providers: [RestService,MessageService],
+  providers: [RestService,MessageService,{
+    provide : HTTP_INTERCEPTORS,
+    useClass : InterceptorService,
+    multi : true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
