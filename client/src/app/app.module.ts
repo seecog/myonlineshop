@@ -1,19 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpModule} from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
-import {RouterModule} from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { RestService } from './services/rest.service';
 import { MessageService } from './services/message.service';
 import { MessageComponent } from './message/message.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VendorProductsComponent } from './vendor-products/vendor-products.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorService } from './services/interceptor.service';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ProductlistComponent } from './productlist/productlist.component';
+import { ProductComponent } from './productlist/product/product.component';
 // import { ModalModule } from '@ng-bootstrap';
 @NgModule({
   declarations: [
@@ -22,7 +25,9 @@ import { InterceptorService } from './services/interceptor.service';
     LoginComponent,
     HomeComponent,
     MessageComponent,
-    VendorProductsComponent
+    VendorProductsComponent,
+    ProductlistComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
@@ -30,25 +35,30 @@ import { InterceptorService } from './services/interceptor.service';
     FormsModule,
     NgbModule,
     HttpClientModule,
+    NgxPaginationModule,
+
     RouterModule.forRoot([
       {
-        path : '',component : LoginComponent
+        path: '', component: LoginComponent
       },
       {
-        path : 'register',component : RegisterComponent
+        path: 'register', component: RegisterComponent
       },
       {
-        path : 'home',component : HomeComponent,
-        children : [
-          {path : 'vendorproducts',component : VendorProductsComponent}
+        path: 'home', component: HomeComponent,
+        children: [
+          { path: 'vendorproducts', component: VendorProductsComponent },
+          {
+            path : 'productlist',component : ProductlistComponent
+          }
         ]
       }
     ])
   ],
-  providers: [RestService,MessageService,{
-    provide : HTTP_INTERCEPTORS,
-    useClass : InterceptorService,
-    multi : true
+  providers: [RestService, MessageService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: InterceptorService,
+    multi: true
   }],
   bootstrap: [AppComponent]
 })
