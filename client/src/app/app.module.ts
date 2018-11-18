@@ -17,6 +17,8 @@ import { InterceptorService } from './services/interceptor.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ProductlistComponent } from './productlist/productlist.component';
 import { ProductComponent } from './productlist/product/product.component';
+import { ProductdesComponent } from './productdes/productdes.component';
+import { CartService } from './services/cart.service';
 // import { ModalModule } from '@ng-bootstrap';
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { ProductComponent } from './productlist/product/product.component';
     MessageComponent,
     VendorProductsComponent,
     ProductlistComponent,
-    ProductComponent
+    ProductComponent,
+    ProductdesComponent
   ],
   imports: [
     BrowserModule,
@@ -50,12 +53,15 @@ import { ProductComponent } from './productlist/product/product.component';
           { path: 'vendorproducts', component: VendorProductsComponent },
           {
             path : 'productlist',component : ProductlistComponent
+          },
+          {
+            path : 'description/:id',component : ProductdesComponent
           }
         ]
       }
     ])
   ],
-  providers: [RestService, MessageService, {
+  providers: [CartService,RestService, MessageService, {
     provide: HTTP_INTERCEPTORS,
     useClass: InterceptorService,
     multi: true
