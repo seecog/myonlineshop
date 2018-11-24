@@ -31,6 +31,9 @@ app.use('/api/seller',productRouter);
 var revRouter = require('./review');
 app.use('/api/customer',revRouter)
 
+var orderRouter = require('./order');
+app.use('/api/paymentsuccess',orderRouter)
+
 app.listen(3000,()=>{
     console.log('Server starts')
 })

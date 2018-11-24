@@ -19,6 +19,8 @@ import { ProductlistComponent } from './productlist/productlist.component';
 import { ProductComponent } from './productlist/product/product.component';
 import { ProductdesComponent } from './productdes/productdes.component';
 import { CartService } from './services/cart.service';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 // import { ModalModule } from '@ng-bootstrap';
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { CartService } from './services/cart.service';
     VendorProductsComponent,
     ProductlistComponent,
     ProductComponent,
-    ProductdesComponent
+    ProductdesComponent,
+    CheckoutComponent,
+    PaymentSuccessComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +60,12 @@ import { CartService } from './services/cart.service';
           },
           {
             path : 'description/:id',component : ProductdesComponent
+          },
+          {
+            path : 'checkout',component : CheckoutComponent
+          },
+          {
+            path : 'payment-success',component : PaymentSuccessComponent
           }
         ]
       }

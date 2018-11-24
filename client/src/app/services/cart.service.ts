@@ -3,6 +3,11 @@ import { SelectorMatcher } from "@angular/compiler";
 
 export class CartService{
 totalItems=0;
+
+constructor(){
+    this.totalItems=this.getCart().length;
+}
+
 getCart(){
 var cart = localStorage.getItem('cart');
 console.log('The cart is ',cart)
