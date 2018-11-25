@@ -9,45 +9,55 @@ import { Router } from '@angular/router';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
-cartList : any[]=[];
-  constructor(private router : Router,private rest : RestService,private cart : CartService) { }
+  cartList: any[] = [];
+  items: any[] = [];
+  constructor(private router: Router, private rest: RestService, private cart: CartService) { }
 
   ngOnInit() {
-    var cartItems=this.cart.getCart();
-    this.cartList = cartItems.map((cart)=>{
-      return {
-        name : cart.title,
-        cost : cart.price,
-        pic : cart.image,
-        items : 1
-      }
+    var cartItems = this.cart.getCart();
+    cartItems.forEach((item) => {
+      this.items.push(1);
     })
-    console.log('Total tems ',JSON.stringify(cartItems))
-  }
+    cartItems.forEach((item, i) => {
+      this.cartList.push({
+        product: item,
+        quantity : this.items[i]
+      })
+    })
 
   
 
-
-  get totalPrice(){
-return this.cartList.reduce((total,x)=>{
-  var rowTotal = x.items*x.cost;
-  return total+rowTotal;
-},0)
+    console.log('Total tems ', JSON.stringify(cartItems))
   }
 
-  async pay(){
-    
-var data = await this.rest.post('http://localhost:3000/api/paymentsuccess/orders',{
-totalPrice : this.totalPrice,
-products : this.cartList
+
+
+
+  get totalPrice() {
+    return this.cartList.reduce((total, x) => {
+      var rowTotal = x.quantity * x.product.price;
+      return total + rowTotal;
+    }, 0)
+  }
+
+  async pay() {
+console.log('The raw data is ',{
+  totalPrice: this.totalPrice,
+  products: this.cartList
 })
-   if(data['success']){
-     console.log('Order successfull')
-     this.router.navigate(['home/payment-success'])
-   }
+    var data = await this.rest.post('http://localhost:3000/api/paymentsuccess/orders', {
+      totalPrice: this.totalPrice,
+      products: this.cartList
+    })
+    if (data['success']) {
+      localStorage.removeItem('cart');
+      this.cart.totalItems = 0;
+      console.log('Order successfull')
+      this.router.navigate(['home/payment-success'])
+    }
   }
 
-  
+
 
 
 

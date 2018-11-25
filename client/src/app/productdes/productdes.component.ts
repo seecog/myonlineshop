@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RestService } from '../services/rest.service';
 import { CartService } from '../services/cart.service';
 import { MessageService } from '../services/message.service';
-
+import {RatingModule} from "ngx-rating";
 @Component({
   selector: 'app-productdes',
   templateUrl: './productdes.component.html',
@@ -11,7 +11,9 @@ import { MessageService } from '../services/message.service';
 })
 export class ProductdesComponent implements OnInit{
 private para : any;
+private review : any={};
 private product : any = {};
+starsCount : number;
   constructor(private mess : MessageService,private cartService :  CartService,private rest: RestService, private paramObj: ActivatedRoute)
  {
 this.paramObj.params.subscribe((para)=>{
@@ -21,6 +23,19 @@ this.paramObj.params.subscribe((para)=>{
 
 ngOnInit(){
   this.getProduct();
+}
+
+async saveReview(){
+  console.log('The review is ',this.product)
+  // this.review.productId = this.product._id;
+  
+  // var data = await this.rest.post("http://localhost:3000/api/customer/reviews",this.review);
+  // console.log('The review data is ',data)
+  //    if (data['success']) {
+  //     console.log("-->", data);
+  //     console.log('review saved')
+  //   }
+
 }
 
   async getProduct() {

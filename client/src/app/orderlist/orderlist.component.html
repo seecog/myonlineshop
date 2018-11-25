@@ -1,0 +1,24 @@
+<h3>Order List</h3>
+
+<table class="table">
+  <th>Order Id</th><th>Items</th><th>Total</th>
+  <tr *ngFor="let x of orders">
+    <td style="color:green;">
+      {{x._id}}
+    </td>
+<td>
+<ul>
+  <li *ngFor="let item of x.products">
+   
+<img [src]="item.product.image" width="50" height="50"> / Rs. {{item.product.price}}
+
+<span class="badge" style="color:red;">({{item.quantity}} Items)</span>
+  </li>
+</ul>
+</td>
+
+<td>
+  {{x.totalPrice}}
+</td>
+  </tr>
+</table>

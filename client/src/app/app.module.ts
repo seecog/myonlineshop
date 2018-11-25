@@ -9,7 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { RestService } from './services/rest.service';
 import { MessageService } from './services/message.service';
 import { MessageComponent } from './message/message.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VendorProductsComponent } from './vendor-products/vendor-products.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -21,7 +21,9 @@ import { ProductdesComponent } from './productdes/productdes.component';
 import { CartService } from './services/cart.service';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
+import { OrderlistComponent } from './orderlist/orderlist.component';
 // import { ModalModule } from '@ng-bootstrap';
+import {RatingModule} from "ngx-rating";
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,10 +36,12 @@ import { PaymentSuccessComponent } from './payment-success/payment-success.compo
     ProductComponent,
     ProductdesComponent,
     CheckoutComponent,
-    PaymentSuccessComponent
+    PaymentSuccessComponent,
+    OrderlistComponent
   ],
   imports: [
     BrowserModule,
+    RatingModule,
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
@@ -66,6 +70,10 @@ import { PaymentSuccessComponent } from './payment-success/payment-success.compo
           },
           {
             path : 'payment-success',component : PaymentSuccessComponent
+          },
+          {
+            path : 'orderlist',
+            component : OrderlistComponent
           }
         ]
       }

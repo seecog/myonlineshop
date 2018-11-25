@@ -2,13 +2,16 @@
 <h3>Cart List </h3>
 
 <table class="table">
-  <th>Pic</th><th>Name</th><th>Cost</th>
+  <th>Pic</th><th>Name</th><th>Cost</th><th>Quantity</th>
   <tr *ngFor="let x of cartList">
-<td><img [src]="x.pic" width="100" height="100"></td>
-<td>{{x.name}}</td>
-<td>Rs. {{x.cost}}</td>
+<td><img [src]="x.product.image" width="100" height="100"></td>
+<td>{{x.product.title}}</td>
+<td>Rs. {{x.product.price}}</td>
 <td>
-  <input class="form-control" [(ngModel)]="x.items">
+  <input class="form-control" [(ngModel)]="x.quantity">
+</td>
+<td>
+  {{x.quantity}}
 </td>
   </tr>
   <tr>
